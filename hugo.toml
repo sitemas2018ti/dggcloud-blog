@@ -1,0 +1,93 @@
+# Cambia baseURL por tu dominio propio / Change baseURL to your custom domain
+baseURL = "https://www.dggcloud.com/"
+defaultContentLanguage = "es"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+summaryLength = 40
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  cloud = "clouds"
+  tag = "tags"
+
+[permalinks.page]
+  posts = "/posts/:slug/"
+
+[params]
+  author = "Digo"
+  github = "https://github.com/sitemas2018ti"
+  linkedin = ""
+  mainSections = ["posts"]
+
+[languages]
+  [languages.es]
+    label = "Español"
+    locale = "es-ES"
+    weight = 1
+    title = "Arquitectura Cloud"
+    [languages.es.params]
+      description = "Notas de arquitectura sobre AWS, Azure y Google Cloud: redes, identidad, landing zones y despliegues desde la CLI."
+    [[languages.es.menus.main]]
+      name = "Artículos"
+      pageRef = "/posts"
+      weight = 10
+    [[languages.es.menus.main]]
+      name = "AWS"
+      pageRef = "/clouds/aws"
+      weight = 20
+    [[languages.es.menus.main]]
+      name = "Azure"
+      pageRef = "/clouds/azure"
+      weight = 30
+    [[languages.es.menus.main]]
+      name = "GCP"
+      pageRef = "/clouds/gcp"
+      weight = 40
+    [[languages.es.menus.main]]
+      name = "Sobre mí"
+      pageRef = "/about"
+      weight = 50
+
+  [languages.en]
+    label = "English"
+    locale = "en-US"
+    weight = 2
+    title = "Cloud Architecture"
+    [languages.en.params]
+      description = "Architecture notes on AWS, Azure and Google Cloud: networking, identity, landing zones and CLI-first deployments."
+    [[languages.en.menus.main]]
+      name = "Articles"
+      pageRef = "/posts"
+      weight = 10
+    [[languages.en.menus.main]]
+      name = "AWS"
+      pageRef = "/clouds/aws"
+      weight = 20
+    [[languages.en.menus.main]]
+      name = "Azure"
+      pageRef = "/clouds/azure"
+      weight = 30
+    [[languages.en.menus.main]]
+      name = "GCP"
+      pageRef = "/clouds/gcp"
+      weight = 40
+    [[languages.en.menus.main]]
+      name = "About"
+      pageRef = "/about"
+      weight = 50
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+  [markup.goldmark.renderer]
+    unsafe = false
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]

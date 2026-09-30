@@ -1,0 +1,17 @@
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>© {{ now.Year }} {{ site.Params.author }}. {{ site.Params.description }}</p>
+    <p class="footer-links">
+      {{ with site.Params.github }}<a href="{{ . }}">GitHub</a>{{ end }}
+      {{ with site.Params.linkedin }}<a href="{{ . }}">LinkedIn</a>{{ end }}
+      {{ with site.Home.OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">{{ i18n "rss" }}</a>{{ end }}
+    </p>
+  </div>
+</footer>
+<script>
+  document.querySelector(".theme-toggle").addEventListener("click", function () {
+    var next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+</script>

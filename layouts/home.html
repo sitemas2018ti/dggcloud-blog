@@ -1,0 +1,22 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="wrap">
+    <h1>{{ site.Params.description }}</h1>
+    <ul class="cloud-index">
+      {{ range $key := slice "aws" "azure" "gcp" }}
+        {{ with site.GetPage (printf "/clouds/%s" $key) }}
+        <li class="ci ci-{{ $key }}">
+          <a href="{{ .RelPermalink }}"><span class="ci-name">{{ .LinkTitle }}</span><span class="ci-count">{{ i18n "articles" (len .Pages) }}</span></a>
+        </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </div>
+</section>
+<section class="wrap home-list">
+  <h2 class="section-title">{{ i18n "latest" }}</h2>
+  {{ $posts := where site.RegularPages "Section" "in" site.Params.mainSections }}
+  {{ range first 8 $posts }}{{ partial "post-row.html" . }}{{ else }}<p>{{ i18n "noPosts" }}</p>{{ end }}
+  {{ if gt (len $posts) 8 }}<p><a class="more" href="{{ (site.GetPage "/posts").RelPermalink }}">{{ i18n "allPosts" }}</a></p>{{ end }}
+</section>
+{{ end }}

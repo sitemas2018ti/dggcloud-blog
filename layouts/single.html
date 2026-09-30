@@ -1,0 +1,30 @@
+{{ define "main" }}
+<article class="wrap narrow post">
+  <header class="post-head">
+    {{ partial "cloud-strip.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{ if .IsPage }}{{ if eq .Section "posts" }}
+    <p class="meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>, {{ i18n "readingTime" .ReadingTime }}
+      {{ range .Translations }} <span class="translation">{{ i18n "readIn" }} <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}">{{ .Language.Label }}</a></span>{{ end }}
+    </p>
+    {{ end }}{{ end }}
+  </header>
+  {{ if and (gt .WordCount 600) (.Params.toc | default true) }}
+  <details class="toc" open>
+    <summary>{{ i18n "contents" }}</summary>
+    {{ .TableOfContents }}
+  </details>
+  {{ end }}
+  <div class="prose">{{ .Content }}</div>
+  {{ with .GetTerms "tags" }}
+  <p class="tags"><span>{{ i18n "tags" }}:</span> {{ range . }}<a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a> {{ end }}</p>
+  {{ end }}
+  {{ if eq .Section "posts" }}
+  <nav class="post-nav">
+    {{ with .PrevInSection }}<a class="prev" href="{{ .RelPermalink }}"><small>{{ i18n "previous" }}</small>{{ .Title }}</a>{{ end }}
+    {{ with .NextInSection }}<a class="next" href="{{ .RelPermalink }}"><small>{{ i18n "next" }}</small>{{ .Title }}</a>{{ end }}
+  </nav>
+  {{ end }}
+</article>
+{{ end }}

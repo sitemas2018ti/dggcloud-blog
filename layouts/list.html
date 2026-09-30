@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section class="wrap narrow list-page">
+  <header class="list-head{{ if eq .Kind "term" }} term-{{ .Data.Term }}{{ end }}">
+    <h1>{{ if eq .Kind "term" }}{{ i18n "postsIn" }} {{ end }}{{ .Title }}</h1>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  </header>
+  {{ if eq .Kind "taxonomy" }}
+    <ul class="term-list">
+      {{ range .Pages }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> <span>({{ len .Pages }})</span></li>{{ end }}
+    </ul>
+  {{ else }}
+    {{ $pag := .Paginate .Pages }}
+    {{ range $pag.Pages }}{{ partial "post-row.html" . }}{{ else }}<p>{{ i18n "noPosts" }}</p>{{ end }}
+    {{ if gt $pag.TotalPages 1 }}
+    <nav class="pager">
+      {{ with $pag.Prev }}<a href="{{ .URL }}">{{ i18n "previous" }}</a>{{ end }}
+      <span>{{ $pag.PageNumber }} / {{ $pag.TotalPages }}</span>
+      {{ with $pag.Next }}<a href="{{ .URL }}">{{ i18n "next" }}</a>{{ end }}
+    </nav>
+    {{ end }}
+  {{ end }}
+</section>
+{{ end }}

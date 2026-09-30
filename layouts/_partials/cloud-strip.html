@@ -1,0 +1,6 @@
+{{/* Franja de proveedores: cada segmento es una nube cubierta por el artículo */}}
+{{ with .GetTerms "clouds" }}
+<span class="cloud-strip" role="list">
+  {{ range . }}<a role="listitem" class="seg seg-{{ .Data.Term }}" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+</span>
+{{ end }}
