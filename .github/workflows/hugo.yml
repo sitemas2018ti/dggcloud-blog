@@ -1,4 +1,4 @@
-# Basado en el starter workflow oficial de GitHub Pages para Hugo
+﻿# Basado en el starter workflow oficial de GitHub Pages para Hugo
 # Based on GitHub's official Pages starter workflow for Hugo
 name: Deploy Hugo site to Pages
 
@@ -41,7 +41,7 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Build with Hugo
         run: |
-          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+          hugo --gc --minify
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
